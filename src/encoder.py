@@ -53,20 +53,12 @@ class QuartzNetBlock(torch.nn.Module):
         self.out = torch.nn.Sequential(torch.nn.ReLU(), torch.nn.Dropout(dropout))
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # residual = self.res(x) if self.res else 0
-        # for block in self.conv:
-        #     x = block(x)
-        # x += residual
-        # x = self.out(x)
-        # return x
-        # print(12345567)
-        if self.res:
-            residual = self.res(x)
-        for layer in self.conv:
-            x = layer(x)
-        if self.res:
-            x += residual
-        return self.out(x)
+        residual = self.res(x) if self.res else 0
+        for block in self.conv:
+            x = block(x)
+        x += residual
+        x = self.out(x)
+        return x
 
 
 class QuartzNet(nn.Module):
