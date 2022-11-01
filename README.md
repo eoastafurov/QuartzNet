@@ -61,6 +61,7 @@ sum(p.numel() for p in model.encoder.parameters())
 
 1. Внесены изменения в подсчет метрик (каст к float вместо int) + реализован encoder.py и utils.py
 2. Запущено обучение, понижен WER
+3. Увеличен batchsize
 
 ![](assets/gpu.png)
 ![](assets/training.png)
